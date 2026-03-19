@@ -25,9 +25,9 @@ services:
       - web
 
   db:
-    image: postgres:15
+    image: postgres:18
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/
     env_file:
       - ./.env
 
