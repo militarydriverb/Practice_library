@@ -1,17 +1,17 @@
 services:
   web:
-  build: .
-  command: sh -c "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
-  volumes:
-    - .:/app
-    - static_volume:/app/staticfiles
-  expose:
-    - "8000"
-  depends_on:
-    - db
-    - redis
-  env_file:
-    - ./.env
+    build: .
+    command: sh -c "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+    expose:
+      - "8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - ./.env
 
   nginx:
     build:
@@ -25,20 +25,20 @@ services:
       - web
 
   db:
-    image: postgres:18
+    image: postgres:15
     volumes:
-      - postgres_data:/var/lib/postgresql/
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.env
 
   redis:
     image: redis:7.1
     volumes:
-      - redis_data:/data env_file:
+      - redis_data:/data
     env_file:
       - ./.env
 
 volumes:
   postgres_data:
   static_volume:
-  redis_volume:
+  redis_data:
