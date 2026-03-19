@@ -1,0 +1,10 @@
+<!-- library/templates/library/header.html -->
+<header>
+    <h1>Библиотека</h1>
+    {% if user.is_authenticated %}
+        <p class="mb-4">{{ user.username }} Добро пожаловать в нашу библиотеку!</p>
+    {% else %}
+        <p class="mb-4">Добро пожаловать в нашу библиотеку!</p>
+    {% endif %}
+
+</header>
